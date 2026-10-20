@@ -6,7 +6,7 @@
   const tests = window.NA_TESTS;
 
   if (!config || !Array.isArray(tests)) {
-    console.error("NEET AARAMBH: configuration or test data is missing.");
+    console.error("NEET AARAMBH: config.js or tests.js is missing.");
     return;
   }
 
@@ -22,6 +22,7 @@
   const dialogAttempt = $("#dialogAttempt");
 
   let activeFilter = "all";
+  let activePhase = null;
   let selectedTestId = null;
   let countdownTimer = null;
 
@@ -43,8 +44,9 @@
 
   function formatDate(dateString, includeDay = true) {
     const date = new Date(`${dateString}T12:00:00+05:30`);
+
     return new Intl.DateTimeFormat("en-IN", {
-      timeZone: config.timezone,
+      timeZone: config.timezone || "Asia/Kolkata",
       ...(includeDay ? { weekday: "short" } : {}),
       day: "2-digit",
       month: "short",
@@ -54,7 +56,7 @@
 
   function formatTime(timestamp) {
     return new Intl.DateTimeFormat("en-IN", {
-      timeZone: config.timezone,
+      timeZone: config.timezone || "Asia/Kolkata",
       hour: "2-digit",
       minute: "2-digit",
       hour12: true
@@ -74,10 +76,10 @@
       upcoming: "Upcoming",
       live: "Live Now",
       previous: "Previous"
-    }[status];
+    }[status] || "Unknown";
   }
 
-  function safeText(value) {
+  function escapeHTML(value) {
     return String(value)
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
@@ -86,32 +88,39 @@
       .replaceAll("'", "&#39;");
   }
 
-  function matchesFilter(test, filter, now) {
-    const status = statusOf(test, now);
-
-    if (filter === "all") return true;
-    if (filter === "upcoming" || filter === "live" || filter === "previous") {
-      return status === filter;
-    }
-
-    return test.type === filter;
-  }
-
   function getFilteredTests() {
     const now = Date.now();
     const query = searchInput.value.trim().toLowerCase();
 
     return tests.filter(test => {
-      const matchesSearch = [
+      if (activePhase !== null && test.phase !== activePhase) {
+        return false;
+      }
+
+      const searchableText = [
         test.title,
         `test ${test.id}`,
         String(test.id),
         test.description,
         typeLabel(test.type),
         `phase ${test.phase}`
-      ].some(value => value.toLowerCase().includes(query));
+      ].join(" ").toLowerCase();
 
-      return matchesSearch && matchesFilter(test, activeFilter, now);
+      if (query && !searchableText.includes(query)) {
+        return false;
+      }
+
+      const status = statusOf(test, now);
+
+      if (["upcoming", "live", "previous"].includes(activeFilter)) {
+        return status === activeFilter;
+      }
+
+      if (["chapter", "mixed", "full"].includes(activeFilter)) {
+        return test.type === activeFilter;
+      }
+
+      return true;
     });
   }
 
@@ -122,7 +131,7 @@
     resultCounter.textContent =
       `${filtered.length} ${filtered.length === 1 ? "test" : "tests"}`;
 
-    grid.innerHTML = "";
+    grid.replaceChildren();
     emptyState.hidden = filtered.length !== 0;
     grid.hidden = filtered.length === 0;
 
@@ -130,45 +139,63 @@
 
     filtered.forEach(test => {
       const status = statusOf(test, now);
+
       const article = document.createElement("article");
       article.className = "test-card";
 
-      const badgeType = test.type === "chapter"
-        ? "chapter"
-        : test.type === "mixed"
-          ? "mixed"
-          : "full";
+      const typeClass = {
+        chapter: "chapter",
+        mixed: "mixed",
+        full: "full"
+      }[test.type] || "chapter";
 
-      const attemptLabel = status === "upcoming"
-        ? "Locked"
-        : "Check CBT";
+      const start = formatTime(startTime(test));
+      const end = formatTime(endTime(test));
 
       article.innerHTML = `
         <div class="test-card-top">
-          <span class="test-number">${safeText(test.title.toUpperCase())}</span>
-          <span class="test-status ${status}">${statusLabel(status)}</span>
+          <span class="test-number">
+            ${escapeHTML(test.title.toUpperCase())}
+          </span>
+          <span class="test-status ${status}">
+            ${statusLabel(status)}
+          </span>
         </div>
-        <h3>${safeText(test.description)}</h3>
+
+        <h3>${escapeHTML(test.description)}</h3>
+
         <p class="test-description">
           Phase ${test.phase} · ${typeLabel(test.type)}
         </p>
+
         <div class="test-meta">
-          <span class="type-badge ${badgeType}">${typeLabel(test.type)}</span>
+          <span class="type-badge ${typeClass}">
+            ${typeLabel(test.type)}
+          </span>
           <span class="type-badge">Phase ${test.phase}</span>
         </div>
+
         <div class="test-date">
           <strong>${formatDate(test.date)}</strong><br>
-          ${config.startHour}:00 AM – ${config.endHour}:00 PM IST
+          ${start} – ${end} IST
         </div>
+
         <div class="test-card-actions">
-          <button class="btn syllabus-button" type="button"
-            data-action="syllabus" data-id="${test.id}">
+          <button
+            class="btn syllabus-button"
+            type="button"
+            data-action="syllabus"
+            data-id="${test.id}">
             View Syllabus
           </button>
-          <button class="btn btn-primary" type="button"
-            data-action="attempt" data-id="${test.id}"
+
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-action="attempt"
+            data-id="${test.id}"
             ${status === "upcoming" ? "disabled" : ""}>
-            ${attemptLabel}
+            ${status === "upcoming" ? "Locked" : "Check CBT"}
           </button>
         </div>
       `;
@@ -182,16 +209,20 @@
   function renderSyllabus(test) {
     selectedTestId = test.id;
 
-    $("#syllabusTitle").textContent = `${test.title} — Syllabus`;
+    $("#syllabusTitle").textContent =
+      `${test.title} — Syllabus`;
 
-    const isMixed = test.type === "mixed";
-    const isFull = test.type === "full";
+    const description = escapeHTML(test.description);
+    const filePath = escapeHTML(test.file);
+    const status = statusOf(test);
 
-    let heading = "Chapter / Topic";
-    let description = test.description;
+    let sectionHeading = "Chapter / Topic";
 
-    if (isMixed) heading = "Cumulative revision syllabus";
-    if (isFull) heading = "Full syllabus mock";
+    if (test.type === "mixed") {
+      sectionHeading = "Cumulative Revision Syllabus";
+    } else if (test.type === "full") {
+      sectionHeading = "Full Syllabus Mock";
+    }
 
     syllabusBody.innerHTML = `
       <div class="dialog-meta">
@@ -199,32 +230,40 @@
         <span>${typeLabel(test.type)}</span>
         <span>Phase ${test.phase}</span>
       </div>
+
       <section class="dialog-section">
-        <h3>${heading}</h3>
-        <ul><li>${safeText(description)}</li></ul>
+        <h3>${sectionHeading}</h3>
+        <ul>
+          <li>${description}</li>
+        </ul>
       </section>
+
       <section class="dialog-section">
-        <h3>Schedule</h3>
+        <h3>Test Schedule</h3>
         <p style="color:var(--muted);font-size:12px">
-          Scheduled date: ${formatDate(test.date)}.
-          Test window: ${config.startHour}:00 AM to
-          ${config.endHour}:00 PM IST.
+          Date: ${formatDate(test.date)}<br>
+          Start: ${formatTime(startTime(test))} IST<br>
+          End: ${formatTime(endTime(test))} IST
         </p>
       </section>
+
       <section class="dialog-section">
-        <h3>Paper availability</h3>
+        <h3>CBT Paper</h3>
         <p style="color:var(--muted);font-size:12px">
-          The syllabus and schedule are listed here. The actual
-          question paper must be uploaded separately as
-          <code>${safeText(test.file)}</code>.
+          Expected file path:
+          <code>${filePath}</code>
+        </p>
+        <p style="color:var(--muted);font-size:12px">
+          ${status === "upcoming"
+            ? "This test has not opened yet."
+            : "The CBT file must be uploaded before the exam can be attempted."}
         </p>
       </section>
     `;
 
-    dialogAttempt.disabled = statusOf(test) === "upcoming";
-    dialogAttempt.textContent = statusOf(test) === "upcoming"
-      ? "Test Locked"
-      : "Check CBT";
+    dialogAttempt.disabled = status === "upcoming";
+    dialogAttempt.textContent =
+      status === "upcoming" ? "Test Locked" : "Check CBT";
 
     if (typeof dialog.showModal === "function") {
       dialog.showModal();
@@ -235,87 +274,124 @@
 
   async function openCBT(test) {
     if (statusOf(test) === "upcoming") {
-      alert(`This test is scheduled for ${formatDate(test.date)}. It is not open yet.`);
+      alert(
+        `${test.title} abhi open nahi hai.\n` +
+        `Scheduled date: ${formatDate(test.date)}`
+      );
       return;
     }
 
-    const fileUrl = new URL(test.file, window.location.href);
-    const button = dialogAttempt;
+    const fileURL = new URL(test.file, document.baseURI);
 
-    if (button) {
-      button.disabled = true;
-      button.textContent = "Checking paper…";
+    if (fileURL.origin !== window.location.origin) {
+      alert("Invalid CBT file location.");
+      return;
     }
 
+    const button = dialogAttempt;
+    const originalText = button.textContent;
+
+    button.disabled = true;
+    button.textContent = "Checking paper…";
+
     try {
-      const response = await fetch(fileUrl.href, {
+      const response = await fetch(fileURL.href, {
         method: "HEAD",
         cache: "no-store"
       });
 
+      if (!response.ok) {
+        throw new Error("CBT paper not found.");
+      }
+
       const contentType = response.headers.get("content-type") || "";
 
-      if (!response.ok || contentType.includes("text/html") &&
-          !fileUrl.pathname.endsWith(".html")) {
-        throw new Error("CBT file not found");
+      if (
+        contentType.includes("text/html") ||
+        fileURL.pathname.endsWith(".html")
+      ) {
+        // GitHub Pages may return the 404 page with status 200.
+        const check = await fetch(fileURL.href, {
+          cache: "no-store"
+        });
+
+        const html = await check.text();
+
+        if (
+          /<title>\s*404\b/i.test(html) ||
+          /There isn't a GitHub Pages site here/i.test(html) ||
+          /Page not found/i.test(html)
+        ) {
+          throw new Error("CBT file is missing.");
+        }
       }
 
-      // Open only after confirming the requested file exists.
-      window.open(fileUrl.href, "_blank", "noopener,noreferrer");
+      // Attempt to open only after the file check.
+      window.open(fileURL.href, "_blank", "noopener,noreferrer");
+
     } catch (error) {
       alert(
-        `${test.title} ka CBT paper abhi available nahi hai.\n\n` +
-        `Expected file: ${test.file}\n\n` +
-        "GitHub repository mein is exact path par actual CBT HTML file upload karo."
+        `${test.title} ka actual CBT paper nahi mila.\n\n` +
+        `GitHub repository mein ye file upload karo:\n` +
+        `${test.file}\n\n` +
+        "Note: GitHub Pages par public files ko direct URL se access kiya ja sakta hai."
       );
     } finally {
-      if (button) {
-        button.disabled = statusOf(test) === "upcoming";
-        button.textContent = statusOf(test) === "upcoming"
-          ? "Test Locked"
-          : "Check CBT";
-      }
+      button.disabled = statusOf(test) === "upcoming";
+      button.textContent = originalText;
     }
   }
 
   function updateCountdown() {
     const now = Date.now();
-    const active = tests.find(test => statusOf(test, now) === "live");
-    const next = tests.find(test => statusOf(test, now) === "upcoming");
-    const target = active || next;
+
+    const liveTest = tests.find(
+      test => statusOf(test, now) === "live"
+    );
+
+    const nextTest = tests.find(
+      test => statusOf(test, now) === "upcoming"
+    );
+
+    const target = liveTest || nextTest;
 
     const title = $("#nextTitle");
     const date = $("#nextDate");
     const label = $("#nextLabel");
-    const status = $("#nextStatus");
+    const statusBadge = $("#nextStatus");
     const countLabel = $("#countLabel");
 
     if (!target) {
       title.textContent = "Series Completed";
       date.textContent = "All scheduled tests have ended.";
       label.textContent = "NEET AARAMBH Physics";
-      status.textContent = "Completed";
+      statusBadge.textContent = "Completed";
       countLabel.textContent = "Thank you for completing the series.";
-      ["Days", "Hours", "Minutes", "Seconds"].forEach((part, i) => {
+
+      ["Days", "Hours", "Minutes", "Seconds"].forEach(part => {
         $(`#cd${part}`).textContent = "00";
       });
+
       return;
     }
 
-    const targetTime = active ? endTime(active) : startTime(target);
+    const targetTime = liveTest ? endTime(target) : startTime(target);
+    const remaining = Math.max(0, targetTime - now);
 
     title.textContent = `${target.title}: ${target.description}`;
     date.textContent = formatDate(target.date);
-    label.textContent = active ? "Current live test ends in" : "Next scheduled test";
-    status.textContent = active ? "Live Now" : "Upcoming";
-    status.style.color = active ? "var(--green)" : "var(--amber)";
+    label.textContent = liveTest
+      ? "Current live test ends in"
+      : "Next scheduled test";
 
-    let remaining = Math.max(0, targetTime - now);
+    statusBadge.textContent = liveTest ? "Live Now" : "Upcoming";
+    statusBadge.style.color = liveTest
+      ? "var(--green)"
+      : "var(--amber)";
+
     const days = Math.floor(remaining / 86400000);
-    remaining %= 86400000;
-    const hours = Math.floor(remaining / 3600000);
-    remaining %= 3600000;
-    const minutes = Math.floor(remaining / 60000);
+    const hours = Math.floor((remaining % 86400000) / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
     const seconds = Math.floor((remaining % 60000) / 1000);
 
     $("#cdDays").textContent = pad(days);
@@ -323,119 +399,120 @@
     $("#cdMinutes").textContent = pad(minutes);
     $("#cdSeconds").textContent = pad(seconds);
 
-    countLabel.textContent = active
+    countLabel.textContent = liveTest
       ? `Scheduled close: ${formatTime(targetTime)} IST`
       : `Starts at ${formatTime(targetTime)} IST`;
   }
 
   function setFilter(filter) {
     activeFilter = filter;
+    activePhase = null;
 
     $$(".filter").forEach(button => {
-      const isActive = button.dataset.filter === filter;
-      button.classList.toggle("active", isActive);
-      button.setAttribute("aria-pressed", String(isActive));
+      const selected = button.dataset.filter === filter;
+
+      button.classList.toggle("active", selected);
+      button.setAttribute("aria-pressed", String(selected));
     });
 
     renderCards();
   }
 
-  // Search and filter controls
+  // Search
   searchInput.addEventListener("input", renderCards);
 
+  // Category and status filters
   $$(".filter").forEach(button => {
-    button.addEventListener("click", () => setFilter(button.dataset.filter));
+    button.addEventListener("click", () => {
+      setFilter(button.dataset.filter);
+    });
   });
 
+  // Reset all filters
   $("#resetFilters").addEventListener("click", () => {
     searchInput.value = "";
     setFilter("all");
   });
 
-  // Delegate button clicks from the dynamic test cards
+  // Test card actions
   grid.addEventListener("click", event => {
     const button = event.target.closest("button[data-action]");
+
     if (!button) return;
 
     const test = window.getTestById(button.dataset.id);
+
     if (!test) return;
 
     if (button.dataset.action === "syllabus") {
       renderSyllabus(test);
-    }
-
-    if (button.dataset.action === "attempt") {
+    } else if (button.dataset.action === "attempt") {
       openCBT(test);
     }
   });
 
+  // CBT button in syllabus popup
   dialogAttempt.addEventListener("click", () => {
     const test = window.getTestById(selectedTestId);
+
     if (test) openCBT(test);
   });
 
-  $("#closeDialog").addEventListener("click", () => dialog.close());
-
-  dialog.addEventListener("click", event => {
-    if (event.target === dialog) dialog.close();
+  // Dialog close controls
+  $("#closeDialog").addEventListener("click", () => {
+    dialog.close();
   });
 
-  // Phase navigation applies the corresponding test category.
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  // Phase navigation
   $$("[data-phase-jump]").forEach(link => {
     link.addEventListener("click", () => {
-      const phase = Number(link.dataset.phaseJump);
+      activePhase = Number(link.dataset.phaseJump);
+      activeFilter = "all";
       searchInput.value = "";
-      setFilter("all");
 
-      // Filter by the actual phase without changing the source data.
-      const phaseTests = tests.filter(test => test.phase === phase);
-      grid.innerHTML = "";
-      emptyState.hidden = phaseTests.length !== 0;
-      resultCounter.textContent = `${phaseTests.length} tests`;
+      $$(".filter").forEach(button => {
+        const selected = button.dataset.filter === "all";
 
-      const fragment = document.createDocumentFragment();
-      const now = Date.now();
-
-      phaseTests.forEach(test => {
-        const status = statusOf(test, now);
-        const article = document.createElement("article");
-        article.className = "test-card";
-        article.innerHTML = `
-          <div class="test-card-top">
-            <span class="test-number">${test.title.toUpperCase()}</span>
-            <span class="test-status ${status}">${statusLabel(status)}</span>
-          </div>
-          <h3>${safeText(test.description)}</h3>
-          <p class="test-description">Phase ${test.phase} · ${typeLabel(test.type)}</p>
-          <div class="test-date"><strong>${formatDate(test.date)}</strong></div>
-          <div class="test-card-actions">
-            <button class="btn syllabus-button" type="button" data-action="syllabus" data-id="${test.id}">View Syllabus</button>
-            <button class="btn btn-primary" type="button" data-action="attempt" data-id="${test.id}" ${status === "upcoming" ? "disabled" : ""}>${status === "upcoming" ? "Locked" : "Check CBT"}</button>
-          </div>`;
-        fragment.appendChild(article);
+        button.classList.toggle("active", selected);
+        button.setAttribute("aria-pressed", String(selected));
       });
 
-      grid.appendChild(fragment);
+      renderCards();
     });
   });
 
-  // Configuration-driven page details
+  // Page configuration
   $("#supportLink").href = config.support;
   $("#currentYear").textContent = new Date().getFullYear();
-  $("#totalCount").textContent = tests.length;
-  $("#chapterCount").textContent = tests.filter(test => test.type === "chapter").length;
-  $("#mixedCount").textContent = tests.filter(test => test.type === "mixed").length;
-  $("#mockCount").textContent = tests.filter(test => test.type === "full").length;
 
+  $("#totalCount").textContent = tests.length;
+  $("#chapterCount").textContent =
+    tests.filter(test => test.type === "chapter").length;
+
+  $("#mixedCount").textContent =
+    tests.filter(test => test.type === "mixed").length;
+
+  $("#mockCount").textContent =
+    tests.filter(test => test.type === "full").length;
+
+  // Initial rendering
   renderCards();
   updateCountdown();
 
   countdownTimer = window.setInterval(() => {
     updateCountdown();
     renderCards();
-  }, 15000);
+  }, 1000);
 
   window.addEventListener("pagehide", () => {
-    if (countdownTimer) window.clearInterval(countdownTimer);
+    if (countdownTimer !== null) {
+      window.clearInterval(countdownTimer);
+    }
   });
 })();
