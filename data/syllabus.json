@@ -1,0 +1,494 @@
+{
+  "1": {
+    "Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)"
+    ]
+  },
+  "2": {
+    "Syllabus": [
+      "Vectors"
+    ]
+  },
+  "3": {
+    "Syllabus": [
+      "Units and Measurements"
+    ]
+  },
+  "4": {
+    "Syllabus": [
+      "Motion in a Straight Line"
+    ]
+  },
+  "5": {
+    "Syllabus": [
+      "Motion in a Plane"
+    ]
+  },
+  "6": {
+    "Syllabus": [
+      "Laws of Motion"
+    ]
+  },
+  "7": {
+    "Syllabus": [
+      "Work, Energy and Power"
+    ]
+  },
+  "8": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–7 (Completed Chapters)"
+    ]
+  },
+  "9": {
+    "Syllabus": [
+      "Centre of Mass and System of Particles"
+    ]
+  },
+  "10": {
+    "Syllabus": [
+      "Rotational Motion"
+    ]
+  },
+  "11": {
+    "Syllabus": [
+      "Gravitation"
+    ]
+  },
+  "12": {
+    "Syllabus": [
+      "Mechanical Properties of Solids"
+    ]
+  },
+  "13": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–11 (Completed Chapters)"
+    ]
+  },
+  "14": {
+    "Syllabus": [
+      "Mechanical Properties of Fluids"
+    ]
+  },
+  "15": {
+    "Syllabus": [
+      "Thermal Properties of Matter"
+    ]
+  },
+  "16": {
+    "Syllabus": [
+      "Kinetic Theory"
+    ]
+  },
+  "17": {
+    "Syllabus": [
+      "Thermodynamics"
+    ]
+  },
+  "18": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–15 (Completed Chapters)"
+    ]
+  },
+  "19": {
+    "Syllabus": [
+      "Oscillations"
+    ]
+  },
+  "20": {
+    "Syllabus": [
+      "Waves"
+    ]
+  },
+  "21": {
+    "Syllabus": [
+      "Electric Charges and Fields"
+    ]
+  },
+  "22": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–18 (Completed Chapters)"
+    ]
+  },
+  "23": {
+    "Syllabus": [
+      "Electrostatic Potential and Capacitance"
+    ]
+  },
+  "24": {
+    "Syllabus": [
+      "Current Electricity"
+    ]
+  },
+  "25": {
+    "Syllabus": [
+      "Moving Charges and Magnetism"
+    ]
+  },
+  "26": {
+    "Syllabus": [
+      "Magnetism and Matter"
+    ]
+  },
+  "27": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields",
+      "Electrostatic Potential and Capacitance",
+      "Current Electricity",
+      "Moving Charges and Magnetism",
+      "Magnetism and Matter"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–22 (Completed Chapters)"
+    ]
+  },
+  "28": {
+    "Syllabus": [
+      "Electromagnetic Induction"
+    ]
+  },
+  "29": {
+    "Syllabus": [
+      "Alternating Current"
+    ]
+  },
+  "30": {
+    "Syllabus": [
+      "Electromagnetic Waves"
+    ]
+  },
+  "31": {
+    "Syllabus": [
+      "Ray Optics and Optical Instruments"
+    ]
+  },
+  "32": {
+    "Syllabus": [
+      "Wave Optics"
+    ]
+  },
+  "33": {
+    "Syllabus": [
+      "Dual Nature of Radiation and Matter"
+    ]
+  },
+  "34": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields",
+      "Electrostatic Potential and Capacitance",
+      "Current Electricity",
+      "Moving Charges and Magnetism",
+      "Magnetism and Matter",
+      "Electromagnetic Induction",
+      "Alternating Current",
+      "Electromagnetic Waves",
+      "Ray Optics and Optical Instruments",
+      "Wave Optics",
+      "Dual Nature of Radiation and Matter"
+    ],
+    "Test purpose": [
+      "Cumulative Revision: Chapters 1–28 (Completed Chapters)"
+    ]
+  },
+  "35": {
+    "Syllabus": [
+      "Atoms"
+    ]
+  },
+  "36": {
+    "Syllabus": [
+      "Nuclei"
+    ]
+  },
+  "37": {
+    "Syllabus": [
+      "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+    ]
+  },
+  "38": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields",
+      "Electrostatic Potential and Capacitance",
+      "Current Electricity",
+      "Moving Charges and Magnetism",
+      "Magnetism and Matter",
+      "Electromagnetic Induction",
+      "Alternating Current",
+      "Electromagnetic Waves",
+      "Ray Optics and Optical Instruments",
+      "Wave Optics",
+      "Dual Nature of Radiation and Matter",
+      "Atoms",
+      "Nuclei",
+      "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+    ],
+    "Test purpose": [
+      "Comprehensive Practice across Chapters 1–31"
+    ]
+  },
+  "39": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields",
+      "Electrostatic Potential and Capacitance",
+      "Current Electricity",
+      "Moving Charges and Magnetism",
+      "Magnetism and Matter",
+      "Electromagnetic Induction",
+      "Alternating Current",
+      "Electromagnetic Waves",
+      "Ray Optics and Optical Instruments",
+      "Wave Optics",
+      "Dual Nature of Radiation and Matter",
+      "Atoms",
+      "Nuclei",
+      "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+    ],
+    "Test purpose": [
+      "Cumulative Revision & Weak-Topic High-Yield Focus"
+    ]
+  },
+  "40": {
+    "Cumulative Physics Syllabus": [
+      "Basic Maths & Calculus (Mathematical Tools)",
+      "Vectors",
+      "Units and Measurements",
+      "Motion in a Straight Line",
+      "Motion in a Plane",
+      "Laws of Motion",
+      "Work, Energy and Power",
+      "Centre of Mass and System of Particles",
+      "Rotational Motion",
+      "Gravitation",
+      "Mechanical Properties of Solids",
+      "Mechanical Properties of Fluids",
+      "Thermal Properties of Matter",
+      "Kinetic Theory",
+      "Thermodynamics",
+      "Oscillations",
+      "Waves",
+      "Electric Charges and Fields",
+      "Electrostatic Potential and Capacitance",
+      "Current Electricity",
+      "Moving Charges and Magnetism",
+      "Magnetism and Matter",
+      "Electromagnetic Induction",
+      "Alternating Current",
+      "Electromagnetic Waves",
+      "Ray Optics and Optical Instruments",
+      "Wave Optics",
+      "Dual Nature of Radiation and Matter",
+      "Atoms",
+      "Nuclei",
+      "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+    ],
+    "Test purpose": [
+      "Phase 1 Final Grand Revision (All 31 Chapters Completed)"
+    ]
+  },
+  "41": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 1"
+    ]
+  },
+  "42": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 2"
+    ]
+  },
+  "43": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 3"
+    ]
+  },
+  "44": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 4"
+    ]
+  },
+  "45": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 5"
+    ]
+  },
+  "46": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 6"
+    ]
+  },
+  "47": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 7"
+    ]
+  },
+  "48": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 8"
+    ]
+  },
+  "49": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Full Syllabus Physics Mock 9"
+    ]
+  },
+  "50": {
+    "Physics": [
+      "Complete NEET Physics syllabus"
+    ],
+    "Test purpose": [
+      "Final Full Syllabus Physics Mock"
+    ]
+  }
+}
