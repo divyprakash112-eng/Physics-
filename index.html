@@ -3,211 +3,234 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="NEET AARAMBH Physics Test Series 2027. Chapter-wise tests, cumulative revision tests and full syllabus NEET Physics mocks.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0757d5">
+  <meta name="description" content="NEET AARAMBH Physics Test Series 2027">
   <title>NEET AARAMBH | Physics Test Series 2027</title>
+
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/config.js" defer></script>
-  <script src="assets/js/tests.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/tests.js"></script>
+  <script defer src="assets/js/app.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="./" aria-label="NEET AARAMBH home">
-      <span class="brand-mark">NA</span>
-      <span>
-        <strong>NEET AARAMBH</strong>
-        <small>LEARN · PRACTICE · IMPROVE</small>
-      </span>
-    </a>
-    <nav class="nav-links">
-      <a href="#overview">Overview</a>
-      <a href="#tests">Test Series</a>
-      <a href="#phases">Phases</a>
-    </nav>
-    <a class="btn btn-small btn-outline" href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf" target="_blank" rel="noopener">View Planner ↗</a>
-  </header>
 
-  <main>
-    <section class="hero" id="overview">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse"></span> NEET 2027 PREPARATION</div>
-        <h1>Master Physics.<br><span>One Test at a Time.</span></h1>
-        <p class="hero-description">
-          A structured Physics test series designed to build concepts,
-          improve problem-solving and strengthen full-syllabus exam readiness.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#tests">Explore All Tests <span>→</span></a>
-          <a class="btn btn-outline" href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf" target="_blank" rel="noopener">Download Planner ↗</a>
-        </div>
-        <div class="hero-meta">
-          <span><i></i> 21 Oct 2026 – 30 Apr 2027</span>
-          <span><i></i> All timings in IST</span>
+<header class="topbar">
+  <a class="brand" href="./">
+    <span class="brand-mark">NA</span>
+    <span>
+      <strong>NEET AARAMBH</strong>
+      <small>PHYSICS TEST SERIES 2027</small>
+    </span>
+  </a>
+  <nav class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#tests">Test Series</a>
+    <a href="#phases">Phases</a>
+  </nav>
+  <a class="btn btn-outline btn-small"
+     href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
+     target="_blank" rel="noopener">View Planner ↗</a>
+</header>
+
+<main id="overview">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><i class="pulse"></i> NEET 2027 · PHYSICS TEST SERIES</span>
+      <h1>Master Physics.<br><span>One Test at a Time.</span></h1>
+      <p class="hero-description">
+        31 chapter tests. 9 cumulative mixed tests. 10 full-syllabus mocks.
+        Build concepts, practise problem-solving and prepare for NEET 2027.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tests">Explore Tests ↓</a>
+        <a class="btn btn-outline"
+           href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
+           target="_blank" rel="noopener">Complete Planner ↗</a>
+      </div>
+      <div class="hero-meta">
+        <span><i></i> 21 Oct 2026 – 30 Apr 2027</span>
+        <span><i></i> All timings in IST</span>
+      </div>
+    </div>
+
+    <aside class="next-card">
+      <div class="next-card-top">
+        <span class="eyebrow">NEXT SCHEDULED TEST</span>
+        <span class="status-pill">Upcoming</span>
+      </div>
+      <div class="orbit">
+        <div class="orbit-inner">
+          <span class="orbit-symbol">Σ</span>
+          <span class="orbit-caption">PHYSICS</span>
         </div>
       </div>
-
-      <div class="next-card">
-        <div class="next-card-top">
-          <span class="eyebrow">TEST SCHEDULE</span>
-          <span class="status-pill" id="nextStatus">Loading</span>
-        </div>
-        <div class="orbit" aria-hidden="true">
-          <div class="orbit-inner">
-            <span class="orbit-symbol">∑</span>
-            <span class="orbit-caption">PHYSICS</span>
-          </div>
-        </div>
-        <p class="next-label" id="nextLabel">Next scheduled test</p>
-        <h2 id="nextTitle">Loading schedule…</h2>
-        <p id="nextDate" class="next-date">Checking dates…</p>
-        <div class="countdown" id="countdown" aria-live="polite">
-          <div><strong id="cdDays">--</strong><span>DAYS</span></div>
-          <div><strong id="cdHours">--</strong><span>HOURS</span></div>
-          <div><strong id="cdMinutes">--</strong><span>MINS</span></div>
-          <div><strong id="cdSeconds">--</strong><span>SECS</span></div>
-        </div>
-        <p class="count-note" id="countLabel">Countdown uses India Standard Time.</p>
+      <p class="next-label">Next scheduled test</p>
+      <h2 id="nextTitle">Loading schedule…</h2>
+      <p id="nextDate" class="next-date">Checking dates…</p>
+      <div id="countdown" class="countdown">
+        <div><strong>--</strong><span>DAYS</span></div>
+        <div><strong>--</strong><span>HOURS</span></div>
+        <div><strong>--</strong><span>MINS</span></div>
+        <div><strong>--</strong><span>SECS</span></div>
       </div>
-    </section>
+      <p id="countLabel" class="count-note">Starts at 10:00 AM IST</p>
+    </aside>
+  </section>
 
-    <section class="stats" aria-label="Test series statistics">
-      <article class="stat-card">
-        <span class="stat-icon">▦</span>
-        <strong id="totalCount">50</strong>
-        <span>Total Tests</span>
+  <section class="stats" aria-label="Test series statistics">
+    <div class="stat-card">
+      <span class="stat-icon">▦</span>
+      <strong>50</strong>
+      <span>Total Tests</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">∿</span>
+      <strong>31</strong>
+      <span>Chapter Tests</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">↻</span>
+      <strong>9</strong>
+      <span>Mixed Tests</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">◎</span>
+      <strong>10</strong>
+      <span>Full Syllabus Mocks</span>
+    </div>
+  </section>
+
+  <section id="phases" class="phase-strip">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">YOUR ROADMAP</span>
+        <h2>Two phases. One goal.</h2>
+      </div>
+      <p>Follow the schedule, revise consistently and track your preparation.</p>
+    </div>
+    <div class="phase-grid">
+      <article class="phase-card phase-one">
+        <span class="phase-number">PHASE 01</span>
+        <h3>Chapter-wise &amp; Cumulative Revision</h3>
+        <p>Tests 01–40 · Concept building, chapter practice and progressive revision.</p>
+        <div class="phase-bottom">
+          <span>21 Oct 2026 – 28 Feb 2027</span>
+          <a href="#tests" data-phase-jump="1">View tests ↗</a>
+        </div>
       </article>
-      <article class="stat-card">
-        <span class="stat-icon">∿</span>
-        <strong id="chapterCount">31</strong>
-        <span>Chapter Tests</span>
-      </article>
-      <article class="stat-card">
-        <span class="stat-icon">↻</span>
-        <strong id="mixedCount">9</strong>
-        <span>Mixed Tests</span>
-      </article>
-      <article class="stat-card">
-        <span class="stat-icon">◎</span>
-        <strong id="mockCount">10</strong>
-        <span>Full Syllabus Mocks</span>
-      </article>
-    </section>
-
-    <section class="phase-strip" id="phases">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">YOUR ROADMAP</span>
-          <h2>Two phases. One goal.</h2>
+      <article class="phase-card phase-two">
+        <span class="phase-number">PHASE 02</span>
+        <h3>Full Syllabus Mock Series</h3>
+        <p>Tests 41–50 · Full syllabus practice leading up to the final mock.</p>
+        <div class="phase-bottom">
+          <span>07 Mar – 30 Apr 2027</span>
+          <a href="#tests" data-phase-jump="2">View mocks ↗</a>
         </div>
-        <p>Follow the schedule, revise consistently and track your preparation.</p>
-      </div>
-      <div class="phase-grid">
-        <article class="phase-card phase-one">
-          <div class="phase-number">PHASE 01</div>
-          <h3>Chapter-wise & Cumulative Revision</h3>
-          <p>Tests 01–40 · Concept building, chapter practice and progressive revision.</p>
-          <div class="phase-bottom"><span>21 Oct 2026 – 28 Feb 2027</span><a href="#tests" data-phase-jump="1">View tests ↗</a></div>
-        </article>
-        <article class="phase-card phase-two">
-          <div class="phase-number">PHASE 02</div>
-          <h3>Full Syllabus Mock Series</h3>
-          <p>Tests 41–50 · Full syllabus practice leading up to the final mock.</p>
-          <div class="phase-bottom"><span>07 Mar – 30 Apr 2027</span><a href="#tests" data-phase-jump="2">View mocks ↗</a></div>
-        </article>
-      </div>
-    </section>
+      </article>
+    </div>
+  </section>
 
-    <section class="tests-section" id="tests">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">YOUR PREPARATION ROADMAP</span>
-          <h2>Physics Test Series</h2>
-          <p class="section-description">Find a test, check its syllabus and open the CBT when the paper is available.</p>
-        </div>
-        <span class="result-counter" id="resultCounter">50 tests</span>
+  <section id="tests" class="tests-section">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">YOUR PREPARATION ROADMAP</span>
+        <h2>Physics Test Series</h2>
+        <p>Find a test, check its syllabus and open the CBT when the paper is available.</p>
       </div>
+      <span id="resultCounter" class="result-counter">50 tests</span>
+    </div>
 
-      <div class="test-tools">
-        <label class="search-box">
-          <span aria-hidden="true">⌕</span>
-          <input id="testSearch" type="search" placeholder="Search test number, chapter or topic…" autocomplete="off" aria-label="Search tests">
-          <kbd>SEARCH</kbd>
-        </label>
-        <div class="filters" role="group" aria-label="Filter tests">
-          <button class="filter active" data-filter="all" aria-pressed="true">All Tests</button>
-          <button class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
-          <button class="filter" data-filter="live" aria-pressed="false">Live</button>
-          <button class="filter" data-filter="previous" aria-pressed="false">Previous</button>
-          <button class="filter" data-filter="chapter" aria-pressed="false">Chapter-wise</button>
-          <button class="filter" data-filter="mixed" aria-pressed="false">Mixed</button>
-          <button class="filter" data-filter="full" aria-pressed="false">Full Mocks</button>
-        </div>
-      </div>
-
-      <div class="test-summary" id="testSummary">
-        <span><i class="summary-dot upcoming-dot"></i> Upcoming</span>
-        <span><i class="summary-dot live-dot"></i> Live now</span>
-        <span><i class="summary-dot previous-dot"></i> Previous</span>
-      </div>
-
-      <div id="testGrid" class="test-grid" aria-live="polite">
-        <div class="loading-card">Loading your test schedule…</div>
-      </div>
-      <div id="emptyState" class="empty-state" hidden>
+    <div class="test-tools">
+      <label class="search-box">
         <span>⌕</span>
-        <h3>No tests found</h3>
-        <p>Try a different search term or reset the filters.</p>
-        <button class="btn btn-outline" id="resetFilters">Show all tests</button>
-      </div>
-    </section>
+        <input id="testSearch" type="search"
+          placeholder="Search test number, chapter or topic…"
+          aria-label="Search tests">
+        <kbd>SEARCH</kbd>
+      </label>
 
-    <section class="notice">
-      <div class="notice-icon">i</div>
-      <div>
-        <strong>Test availability & timing</strong>
-        <p>Scheduled tests are considered live from 10:00 AM to 10:00 PM IST on their scheduled date. Uploaded previous CBT papers may remain available for practice. A test card alone does not mean that its question paper has been uploaded.</p>
+      <div class="filters" role="group" aria-label="Filter tests">
+        <button class="filter active" data-filter="all" aria-pressed="true">All Tests</button>
+        <button class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+        <button class="filter" data-filter="live" aria-pressed="false">Live</button>
+        <button class="filter" data-filter="previous" aria-pressed="false">Previous</button>
+        <button class="filter" data-filter="chapter" aria-pressed="false">Chapter-wise</button>
+        <button class="filter" data-filter="mixed" aria-pressed="false">Mixed</button>
+        <button class="filter" data-filter="full" aria-pressed="false">Full Mocks</button>
       </div>
-    </section>
-
-    <section class="syllabus-note">
-      <div>
-        <span class="eyebrow">STAY ON TRACK</span>
-        <h2>Plan your next revision.</h2>
-        <p>Use the official series planner to see the complete date-wise schedule and chapter sequence.</p>
-      </div>
-      <a class="btn btn-primary" href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf" target="_blank" rel="noopener">Open Complete Planner ↗</a>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <a class="brand footer-brand" href="./">
-      <span class="brand-mark">NA</span>
-      <span><strong>NEET AARAMBH</strong><small>PHYSICS TEST SERIES 2027</small></span>
-    </a>
-    <p>Learn · Practice · Improve</p>
-    <a id="supportLink" href="https://t.me/" target="_blank" rel="noopener">Support ↗</a>
-    <span class="copyright">© <span id="currentYear">2026</span> NEET AARAMBH</span>
-  </footer>
-
-  <dialog id="syllabusDialog" class="syllabus-dialog" aria-labelledby="syllabusTitle">
-    <div class="dialog-head">
-      <div>
-        <span class="eyebrow">TEST DETAILS</span>
-        <h2 id="syllabusTitle">Test Syllabus</h2>
-      </div>
-      <button id="closeDialog" class="dialog-close" type="button" aria-label="Close syllabus">×</button>
     </div>
-    <div id="syllabusBody"></div>
-    <div class="dialog-actions">
-      <a id="dialogPlanner" class="btn btn-outline" href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf" target="_blank" rel="noopener">Open Planner ↗</a>
-      <button id="dialogAttempt" class="btn btn-primary" type="button">Check CBT</button>
-    </div>
-  </dialog>
 
-  <noscript>
-    <div class="noscript-message">Please enable JavaScript to view the interactive test schedule.</div>
-  </noscript>
+    <div class="test-summary">
+      <span><i class="summary-dot upcoming-dot"></i> Upcoming</span>
+      <span><i class="summary-dot live-dot"></i> Live now</span>
+      <span><i class="summary-dot previous-dot"></i> Previous</span>
+    </div>
+
+    <div id="testGrid" class="test-grid" aria-live="polite">
+      <p class="loading-card">Loading tests…</p>
+    </div>
+
+    <div id="emptyState" class="empty-state" hidden>
+      <span>⌕</span>
+      <h3>No tests found</h3>
+      <p>Try another search term or choose a different filter.</p>
+    </div>
+  </section>
+
+  <section class="notice">
+    <span class="notice-icon">i</span>
+    <div>
+      <strong>Test timing: 10:00 AM–10:00 PM IST</strong>
+      <p>Tests follow their scheduled dates. A CBT can only open if its test file has been uploaded and is available on the website.</p>
+    </div>
+  </section>
+
+  <section class="syllabus-note">
+    <div>
+      <span class="eyebrow">PHYSICS PLANNER</span>
+      <h2>Plan. Practise. Improve.</h2>
+      <p>Use the planner to follow the test schedule and organise your revision.</p>
+    </div>
+    <a class="btn btn-primary"
+       href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
+       target="_blank" rel="noopener">Open Planner ↗</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="./">
+    <span class="brand-mark">NA</span>
+    <span>
+      <strong>NEET AARAMBH</strong>
+      <small>PHYSICS TEST SERIES 2027</small>
+    </span>
+  </a>
+  <p>Learn · Practise · Improve</p>
+  <a href="https://t.me/aalok0602" target="_blank" rel="noopener">Support ↗</a>
+  <div class="copyright">NEET AARAMBH · Physics Test Series 2027</div>
+</footer>
+
+<dialog id="syllabusDialog" class="syllabus-dialog"
+  aria-labelledby="syllabusTitle">
+  <div class="dialog-head">
+    <div>
+      <span class="eyebrow">TEST DETAILS</span>
+      <h2 id="syllabusTitle">Test Syllabus</h2>
+    </div>
+    <button id="closeDialog" class="dialog-close"
+      type="button" aria-label="Close syllabus">×</button>
+  </div>
+  <div id="syllabusBody"></div>
+  <div class="dialog-actions">
+    <a class="btn btn-outline"
+      href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
+      target="_blank" rel="noopener">Open Planner ↗</a>
+  </div>
+</dialog>
+
+<noscript>
+  <p class="noscript-message">Please enable JavaScript to view the test schedule.</p>
+</noscript>
 </body>
 </html>
