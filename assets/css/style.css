@@ -1,236 +1,402 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0757d5">
-  <meta name="description" content="NEET AARAMBH Physics Test Series 2027">
-  <title>NEET AARAMBH | Physics Test Series 2027</title>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/config.js"></script>
-  <script defer src="assets/js/tests.js"></script>
-  <script defer src="assets/js/app.js"></script>
-</head>
-<body>
+:root {
+  --blue:#0757d5;
+  --blue-light:#2678e8;
+  --navy:#0b3478;
+  --text:#172d4d;
+  --muted:#7d8999;
+  --bg:#f1f6ff;
+  --border:#e2eaf5;
+  --white:#fff;
+}
 
-<header class="topbar">
-  <a class="brand" href="./">
-    <span class="brand-mark">NA</span>
-    <span>
-      <strong>NEET AARAMBH</strong>
-      <small>PHYSICS TEST SERIES 2027</small>
-    </span>
-  </a>
-  <nav class="nav-links">
-    <a href="#overview">Overview</a>
-    <a href="#tests">Test Series</a>
-    <a href="#phases">Phases</a>
-  </nav>
-  <a class="btn btn-outline btn-small"
-     href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
-     target="_blank" rel="noopener">View Planner ↗</a>
-</header>
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
+body {
+  margin:0;
+  background:linear-gradient(180deg,#f8fbff,#edf4ff);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
+}
+a { color:inherit; text-decoration:none; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+[hidden] { display:none!important; }
 
-<main id="overview">
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow"><i class="pulse"></i> NEET 2027 · PHYSICS TEST SERIES</span>
-      <h1>Master Physics.<br><span>One Test at a Time.</span></h1>
-      <p class="hero-description">
-        31 chapter tests. 9 cumulative mixed tests. 10 full-syllabus mocks.
-        Build concepts, practise problem-solving and prepare for NEET 2027.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#tests">Explore Tests ↓</a>
-        <a class="btn btn-outline"
-           href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
-           target="_blank" rel="noopener">Complete Planner ↗</a>
-      </div>
-      <div class="hero-meta">
-        <span><i></i> 21 Oct 2026 – 30 Apr 2027</span>
-        <span><i></i> All timings in IST</span>
-      </div>
-    </div>
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  padding:14px max(20px,calc((100% - 1180px)/2));
+  background:#ffffffed;
+  border-bottom:1px solid #e5edf8;
+  backdrop-filter:blur(14px);
+}
+.brand { display:flex; align-items:center; gap:13px; flex-shrink:0; }
+.brand-mark {
+  display:grid;
+  place-items:center;
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#2988f4,#0750c2);
+  color:#fff;
+  font:700 18px 'Space Grotesk',sans-serif;
+  box-shadow:0 4px 0 #d7e5fb;
+}
+.brand strong,.brand small { display:block; }
+.brand strong { font-size:14px; letter-spacing:1px; }
+.brand small { font-size:10px; color:#8794a7; letter-spacing:1px; }
+.nav-links { display:flex; align-items:center; gap:24px; }
+.nav-links a { color:#687a92; font-size:13px; }
+.nav-links a:hover { color:var(--blue); }
 
-    <aside class="next-card">
-      <div class="next-card-top">
-        <span class="eyebrow">NEXT SCHEDULED TEST</span>
-        <span class="status-pill">Upcoming</span>
-      </div>
-      <div class="orbit">
-        <div class="orbit-inner">
-          <span class="orbit-symbol">Σ</span>
-          <span class="orbit-caption">PHYSICS</span>
-        </div>
-      </div>
-      <p class="next-label">Next scheduled test</p>
-      <h2 id="nextTitle">Loading schedule…</h2>
-      <p id="nextDate" class="next-date">Checking dates…</p>
-      <div id="countdown" class="countdown">
-        <div><strong>--</strong><span>DAYS</span></div>
-        <div><strong>--</strong><span>HOURS</span></div>
-        <div><strong>--</strong><span>MINS</span></div>
-        <div><strong>--</strong><span>SECS</span></div>
-      </div>
-      <p id="countLabel" class="count-note">Starts at 10:00 AM IST</p>
-    </aside>
-  </section>
+.btn {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:12px 17px;
+  border:1px solid transparent;
+  border-radius:15px;
+  font-size:13px;
+  font-weight:700;
+  transition:transform .2s,background .2s;
+}
+.btn:hover { transform:translateY(-2px); }
+.btn-primary {
+  color:#fff;
+  background:linear-gradient(110deg,#1975e9,#0750c2);
+  border-color:#1765ce;
+  box-shadow:0 4px 0 #063d91;
+}
+.btn-outline {
+  color:#1456a5;
+  background:#fff;
+  border-color:#dce7f5;
+  box-shadow:0 3px 0 #e8eff9;
+}
+.btn-small { padding:11px 16px; }
 
-  <section class="stats" aria-label="Test series statistics">
-    <div class="stat-card">
-      <span class="stat-icon">▦</span>
-      <strong>50</strong>
-      <span>Total Tests</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">∿</span>
-      <strong>31</strong>
-      <span>Chapter Tests</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">↻</span>
-      <strong>9</strong>
-      <span>Mixed Tests</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">◎</span>
-      <strong>10</strong>
-      <span>Full Syllabus Mocks</span>
-    </div>
-  </section>
+main { max-width:1180px; margin:auto; padding:0 24px; }
+.hero {
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:26px;
+  align-items:stretch;
+  padding:30px 0;
+}
+.hero-copy {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(25px,4vw,42px);
+  border-radius:29px;
+  color:white;
+  background:
+    radial-gradient(circle at 90% 0%,#3189f7 0,transparent 38%),
+    linear-gradient(120deg,#092e72,#0753be 62%,#126ce0);
+  box-shadow:0 9px 0 #dce9ff;
+}
+.eyebrow {
+  display:block;
+  color:#d3e7ff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+.hero h1 {
+  margin:17px 0 13px;
+  font:700 clamp(34px,4.1vw,51px)/1.13 'Space Grotesk',sans-serif;
+  letter-spacing:-1.5px;
+}
+.hero h1 span { color:#a9d4ff; }
+.hero-description { margin:0; color:#e0ecff; font-size:14px; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+.hero-copy .btn-primary { color:#14519d; background:#fff; border-color:#fff; box-shadow:0 4px 0 #c5dcff; }
+.hero-copy .btn-outline { color:#fff; background:#ffffff12; border-color:#ffffff70; box-shadow:none; }
+.hero-meta { display:flex; flex-wrap:wrap; gap:16px; margin-top:25px; color:#d9e8ff; font-size:11px; }
+.hero-meta span { display:flex; align-items:center; gap:8px; }
+.hero-meta i { width:7px; height:7px; display:inline-block; border-radius:50%; background:#7ce4df; }
 
-  <section id="phases" class="phase-strip">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">YOUR ROADMAP</span>
-        <h2>Two phases. One goal.</h2>
-      </div>
-      <p>Follow the schedule, revise consistently and track your preparation.</p>
-    </div>
-    <div class="phase-grid">
-      <article class="phase-card phase-one">
-        <span class="phase-number">PHASE 01</span>
-        <h3>Chapter-wise &amp; Cumulative Revision</h3>
-        <p>Tests 01–40 · Concept building, chapter practice and progressive revision.</p>
-        <div class="phase-bottom">
-          <span>21 Oct 2026 – 28 Feb 2027</span>
-          <a href="#tests" data-phase-jump="1">View tests ↗</a>
-        </div>
-      </article>
-      <article class="phase-card phase-two">
-        <span class="phase-number">PHASE 02</span>
-        <h3>Full Syllabus Mock Series</h3>
-        <p>Tests 41–50 · Full syllabus practice leading up to the final mock.</p>
-        <div class="phase-bottom">
-          <span>07 Mar – 30 Apr 2027</span>
-          <a href="#tests" data-phase-jump="2">View mocks ↗</a>
-        </div>
-      </article>
-    </div>
-  </section>
+.next-card {
+  position:relative;
+  overflow:hidden;
+  padding:25px;
+  text-align:center;
+  border:1px solid #d6e4f6;
+  border-radius:27px;
+  background:linear-gradient(145deg,#fff,#edf5ff);
+  box-shadow:0 7px 0 #dce9ff;
+}
+.next-card:before {
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  right:-130px;
+  top:-140px;
+  border-radius:50%;
+  background:#dcecff;
+}
+.next-card-top { position:relative; display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left; }
+.next-card .eyebrow { color:#1760b3; }
+.status-pill { padding:7px 11px; border-radius:10px; background:#fff2ce; color:#896a27; font-size:11px; font-weight:700; }
+.orbit {
+  width:190px;
+  height:190px;
+  display:grid;
+  place-items:center;
+  margin:18px auto 9px;
+  border:1px solid #d8e8fb;
+  border-radius:50%;
+  background:radial-gradient(circle,#e0f0ff,#f9fcff 67%);
+}
+.orbit-inner {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:155px;
+  height:155px;
+  border:1px dashed #c4dbf5;
+  border-radius:50%;
+}
+.orbit-symbol { color:#1d9bc8; font:700 65px 'Space Grotesk'; line-height:1.2; }
+.orbit-caption { color:#8796ab; font-size:10px; letter-spacing:3px; }
+.next-label { margin:7px 0 3px; color:var(--muted); font-size:12px; }
+.next-card h2 { margin:5px auto; max-width:390px; font:600 25px/1.3 'Space Grotesk'; overflow-wrap:anywhere; }
+.next-date { color:var(--muted); font-size:12px; }
+.countdown {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  margin-top:19px;
+}
+.countdown > div {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:12px 5px;
+  border:1px solid #e0e9f5;
+  border-radius:14px;
+  background:#fff;
+}
+.countdown strong { font:700 clamp(18px,2.2vw,28px) 'Space Grotesk'; }
+.countdown span { color:#8593a7; font-size:9px; letter-spacing:1px; }
+.count-note { color:#7e8ca0; font-size:11px; }
 
-  <section id="tests" class="tests-section">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">YOUR PREPARATION ROADMAP</span>
-        <h2>Physics Test Series</h2>
-        <p>Find a test, check its syllabus and open the CBT when the paper is available.</p>
-      </div>
-      <span id="resultCounter" class="result-counter">50 tests</span>
-    </div>
+.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:0 0 70px; }
+.stat-card {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff,#fafcff);
+  box-shadow:0 6px 0 #eaf1fb;
+}
+.stat-icon { margin-bottom:12px; color:#2494ad; font-size:20px; }
+.stat-card strong { color:#1558b4; font:700 32px 'Space Grotesk'; }
+.stat-card > span:last-child { margin-top:5px; color:var(--muted); font-size:12px; }
 
-    <div class="test-tools">
-      <label class="search-box">
-        <span>⌕</span>
-        <input id="testSearch" type="search"
-          placeholder="Search test number, chapter or topic…"
-          aria-label="Search tests">
-        <kbd>SEARCH</kbd>
-      </label>
+.phase-strip { margin-bottom:75px; }
+.section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:25px; margin-bottom:25px; }
+.section-heading h2 { margin:7px 0; font:600 clamp(28px,3.5vw,35px)/1.25 'Space Grotesk'; letter-spacing:-.7px; }
+.section-heading p { max-width:510px; margin:0 0 7px; color:var(--muted); font-size:13px; }
+.phase-strip > .section-heading > div > .eyebrow,
+.tests-section .section-heading .eyebrow,
+.syllabus-note .eyebrow { color:#1b5eae; }
 
-      <div class="filters" role="group" aria-label="Filter tests">
-        <button class="filter active" data-filter="all" aria-pressed="true">All Tests</button>
-        <button class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
-        <button class="filter" data-filter="live" aria-pressed="false">Live</button>
-        <button class="filter" data-filter="previous" aria-pressed="false">Previous</button>
-        <button class="filter" data-filter="chapter" aria-pressed="false">Chapter-wise</button>
-        <button class="filter" data-filter="mixed" aria-pressed="false">Mixed</button>
-        <button class="filter" data-filter="full" aria-pressed="false">Full Mocks</button>
-      </div>
-    </div>
+.phase-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.phase-card {
+  padding:26px;
+  border:1px solid var(--border);
+  border-top:3px solid #57cbd6;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 6px 0 #eaf1fb;
+}
+.phase-two { border-top-color:#8980e8; }
+.phase-number { color:#2160a7; font-size:11px; font-weight:700; letter-spacing:1.8px; }
+.phase-two .phase-number { color:#7568c4; }
+.phase-card h3 { margin:13px 0 9px; font:600 21px/1.4 'Space Grotesk'; }
+.phase-card p { color:var(--muted); font-size:13px; }
+.phase-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:22px; color:var(--muted); font-size:11px; }
+.phase-bottom a { color:#0870cc; font-weight:700; }
 
-    <div class="test-summary">
-      <span><i class="summary-dot upcoming-dot"></i> Upcoming</span>
-      <span><i class="summary-dot live-dot"></i> Live now</span>
-      <span><i class="summary-dot previous-dot"></i> Previous</span>
-    </div>
+.tests-section { margin-bottom:42px; }
+.result-counter { padding:9px 13px; border:1px solid var(--border); border-radius:12px; color:#657b95; font-size:11px; white-space:nowrap; }
+.test-tools { display:grid; gap:16px; }
+.search-box {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:0 17px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:#fff;
+  box-shadow:0 4px 0 #edf3fc;
+}
+.search-box > span { color:#2893a9; font-size:25px; }
+.search-box input { width:100%; min-width:0; padding:17px 0; border:0; outline:0; color:var(--text); background:transparent; font-size:14px; }
+.search-box input::placeholder { color:#8492a5; }
+.search-box kbd { color:#8291a5; font-size:10px; letter-spacing:1px; white-space:nowrap; }
+.filters { display:flex; flex-wrap:wrap; gap:9px; }
+.filter {
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+  color:#697b92;
+  font-size:11px;
+  font-weight:600;
+  box-shadow:0 3px 0 #edf2f9;
+}
+.filter:hover { border-color:#b8d4f9; }
+.filter.active { border-color:#c4dcff; background:#e5f0ff; color:#1356b0; }
+.test-summary { display:flex; flex-wrap:wrap; gap:18px; margin:21px 0 15px; color:#77869b; font-size:11px; }
+.test-summary span { display:flex; align-items:center; gap:7px; }
+.summary-dot { display:inline-block; width:8px; height:8px; border-radius:50%; }
+.upcoming-dot { background:#ffc95c; }
+.live-dot { background:#55cba7; }
+.previous-dot { background:#8b9db5; }
 
-    <div id="testGrid" class="test-grid" aria-live="polite">
-      <p class="loading-card">Loading tests…</p>
-    </div>
+.test-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:19px; }
+.test-card {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  overflow:hidden;
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:25px;
+  background:#fff;
+  box-shadow:0 6px 0 #eaf1fb;
+  transition:transform .2s,box-shadow .2s;
+}
+.test-card:before { content:""; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#1765d5,#80baff); }
+.test-card:hover { transform:translateY(-3px); box-shadow:0 12px 25px #1d579b16; }
+.test-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.test-number { color:#7b899c; font-size:10px; font-weight:700; letter-spacing:1.2px; }
+.badge { padding:6px 10px; border-radius:9px; font-size:10px; font-weight:700; }
+.badge.upcoming { color:#886821; background:#fff2ca; }
+.badge.live { color:#137a59; background:#d9f7eb; }
+.badge.previous { color:#52647b; background:#edf2f8; }
+.test-card h3 { margin:17px 0 8px; font:600 23px/1.35 'Space Grotesk'; overflow-wrap:anywhere; }
+.test-date { margin:5px 0 13px; color:#53677f; font-size:12px; }
+.type-badge { align-self:flex-start; margin:2px 0 10px; padding:6px 10px; border-radius:9px; background:#eaf3ff; color:#285d9a; font-size:10px; font-weight:700; }
+.type-badge.mixed { background:#f0eaff; color:#6654a3; }
+.type-badge.full { background:#fff0df; color:#986129; }
+.phase-label { color:#77879a; font-size:11px; font-weight:700; }
+.test-description { margin:8px 0 18px; color:var(--muted); font-size:13px; line-height:1.7; }
+.test-message { margin-top:auto; padding-top:12px; color:#77869a; font-size:12px; }
+.card-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+.card-actions button,.card-actions a {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-width:0;
+  padding:12px 8px;
+  border:1px solid #dce7f5;
+  border-radius:14px;
+  background:#f5f9ff;
+  color:#1656a4;
+  text-align:center;
+  font-size:11px;
+  font-weight:700;
+}
+.card-actions .syllabus-button { border-color:#1765ce; background:linear-gradient(110deg,#1975e9,#0750c2); color:#fff; box-shadow:0 4px 0 #063d91; }
+.card-actions button:disabled { border-color:#e5eaf1; background:#f0f3f7; color:#77869a; box-shadow:none; cursor:not-allowed; }
+.loading-card,.empty-state { grid-column:1/-1; padding:35px; text-align:center; border:1px solid var(--border); border-radius:20px; background:#fff; color:var(--muted); }
+.empty-state h3 { color:var(--text); }
 
-    <div id="emptyState" class="empty-state" hidden>
-      <span>⌕</span>
-      <h3>No tests found</h3>
-      <p>Try another search term or choose a different filter.</p>
-    </div>
-  </section>
+.notice { display:flex; gap:15px; padding:22px; margin:38px 0 28px; border:1px solid #f0dfb7; border-radius:18px; background:#fffaf0; }
+.notice-icon { display:grid; place-items:center; flex:0 0 28px; height:28px; border:1px solid #e4c778; border-radius:50%; color:#96701c; font-weight:700; }
+.notice strong { font-size:13px; }
+.notice p,.syllabus-note p { margin:5px 0 0; color:#7e8490; font-size:12px; line-height:1.8; }
 
-  <section class="notice">
-    <span class="notice-icon">i</span>
-    <div>
-      <strong>Test timing: 10:00 AM–10:00 PM IST</strong>
-      <p>Tests follow their scheduled dates. A CBT can only open if its test file has been uploaded and is available on the website.</p>
-    </div>
-  </section>
+.syllabus-note { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:25px; margin:30px 0 55px; border:1px solid #d9e7f8; border-radius:23px; background:linear-gradient(120deg,#fff,#eaf3ff); }
+.syllabus-note h2 { margin:7px 0; font:600 26px 'Space Grotesk'; }
+.syllabus-note p { max-width:580px; }
 
-  <section class="syllabus-note">
-    <div>
-      <span class="eyebrow">PHYSICS PLANNER</span>
-      <h2>Plan. Practise. Improve.</h2>
-      <p>Use the planner to follow the test schedule and organise your revision.</p>
-    </div>
-    <a class="btn btn-primary"
-       href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
-       target="_blank" rel="noopener">Open Planner ↗</a>
-  </section>
-</main>
+.footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:17px; padding:25px max(20px,calc((100% - 1180px)/2)); border-top:1px solid var(--border); background:#fff; color:#7b8ba0; font-size:12px; }
+.footer p { margin:0; }
+.footer > a:last-of-type { color:#1456a5; font-weight:700; }
+.copyright { flex-basis:100%; padding-top:13px; border-top:1px solid #edf1f7; font-size:10px; }
 
-<footer class="footer">
-  <a class="brand" href="./">
-    <span class="brand-mark">NA</span>
-    <span>
-      <strong>NEET AARAMBH</strong>
-      <small>PHYSICS TEST SERIES 2027</small>
-    </span>
-  </a>
-  <p>Learn · Practise · Improve</p>
-  <a href="https://t.me/aalok0602" target="_blank" rel="noopener">Support ↗</a>
-  <div class="copyright">NEET AARAMBH · Physics Test Series 2027</div>
-</footer>
+.syllabus-dialog { width:min(570px,calc(100% - 26px)); max-height:85vh; overflow:auto; padding:24px; border:1px solid #d9e6f5; border-radius:22px; background:#fff; color:var(--text); box-shadow:0 25px 100px #13346040; }
+.syllabus-dialog::backdrop { background:#0b1f3b88; backdrop-filter:blur(4px); }
+.dialog-head { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+.dialog-head h2 { margin:7px 0 0; font:600 24px 'Space Grotesk'; }
+.dialog-close { width:38px; height:38px; border:1px solid var(--border); border-radius:12px; background:#f4f8ff; font-size:24px; }
+#syllabusBody { padding:15px 0; color:#52647b; font-size:13px; }
+#syllabusBody h3 { color:#155bb7; font-size:14px; }
+#syllabusBody li { margin:7px 0; }
+.dialog-actions { display:flex; justify-content:flex-end; padding-top:12px; }
 
-<dialog id="syllabusDialog" class="syllabus-dialog"
-  aria-labelledby="syllabusTitle">
-  <div class="dialog-head">
-    <div>
-      <span class="eyebrow">TEST DETAILS</span>
-      <h2 id="syllabusTitle">Test Syllabus</h2>
-    </div>
-    <button id="closeDialog" class="dialog-close"
-      type="button" aria-label="Close syllabus">×</button>
-  </div>
-  <div id="syllabusBody"></div>
-  <div class="dialog-actions">
-    <a class="btn btn-outline"
-      href="planner/NEET-AARAMBH-Physics-Test-Series-Planner-2027.pdf"
-      target="_blank" rel="noopener">Open Planner ↗</a>
-  </div>
-</dialog>
+.noscript-message { margin:20px; padding:18px; border-radius:12px; background:#fff2ca; color:#624c16; }
 
-<noscript>
-  <p class="noscript-message">Please enable JavaScript to view the test schedule.</p>
-</noscript>
-</body>
-</html>
+@media (max-width:850px) {
+  .topbar { gap:12px; }
+  .nav-links { gap:13px; }
+  .hero { grid-template-columns:1fr; }
+  .next-card { min-height:0; }
+}
+@media (max-width:600px) {
+  .topbar { padding:11px 14px; }
+  .brand { gap:9px; }
+  .brand-mark { width:44px; height:44px; border-radius:14px; }
+  .brand strong { font-size:12px; }
+  .brand small { font-size:9px; letter-spacing:.6px; }
+  .nav-links { display:none; }
+  .btn-small { padding:10px 11px; font-size:11px; }
+  main { padding:0 15px; }
+  .hero { padding:17px 0 22px; gap:17px; }
+  .hero-copy { padding:25px 20px; border-radius:23px; }
+  .hero h1 { font-size:clamp(32px,8vw,43px); }
+  .hero-description { font-size:13px; }
+  .hero-actions .btn { flex:1 1 130px; padding:11px 9px; font-size:11px; }
+  .hero-meta { gap:9px; font-size:10px; }
+  .next-card { padding:20px; border-radius:23px; }
+  .orbit { width:155px; height:155px; }
+  .orbit-inner { width:128px; height:128px; }
+  .orbit-symbol { font-size:53px; }
+  .next-card h2 { font-size:23px; }
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; margin-bottom:55px; }
+  .stat-card { padding:17px; border-radius:20px; }
+  .stat-card strong { font-size:28px; }
+  .phase-strip { margin-bottom:58px; }
+  .section-heading { display:block; }
+  .section-heading p { margin-top:10px; }
+  .phase-grid { grid-template-columns:1fr; gap:13px; }
+  .phase-card { padding:21px; }
+  .phase-card h3 { font-size:19px; }
+  .result-counter { display:inline-block; margin-top:10px; }
+  .test-grid { grid-template-columns:1fr; gap:14px; }
+  .test-card { padding:22px 20px; border-radius:22px; }
+  .test-card h3 { font-size:22px; }
+  .filters { gap:7px; }
+  .filter { padding:9px 11px; font-size:10px; }
+  .search-box { gap:9px; padding:0 12px; }
+  .search-box input { font-size:12px; }
+  .search-box kbd { font-size:9px; }
+  .notice { padding:17px; margin:28px 0 22px; }
+  .syllabus-note { align-items:flex-start; flex-direction:column; padding:21px; margin-bottom:38px; }
+  .footer { padding:22px 16px; }
+  .footer .brand { flex-basis:100%; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; }
+}
